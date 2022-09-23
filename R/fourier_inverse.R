@@ -23,33 +23,29 @@
 #' @examples
 #' Y = rar(100)
 #' grid = c(pi*(1:2000) / 1000 - pi) #a dense grid on -pi, pi
-#' fourier.inverse(spectral.density(Y, q=2, freq=grid))
+#' fourier_inverse(spectral.density(Y, q=2, freq=grid))
 #'
 #' # compare this to
 #' cov.structure(Y)
 #' @useDynLib freqdom
 #' @export
 fourier_inverse = function(F,lags=0){
+
   if (!is.freqdom(F))
     stop("F must be an object of class freqdom")
   if (!is.numeric(lags) || !is.vector(lags))
     stop("lags must be a vector of integers")
 
-  H = length(lags)
-  A = array(0, dim=c(dim(F$operators)[1:2],H))
+  tmp <- .Call("fourier_inverse",
+               as.vector(F$operators),
+               as.integer(dim(F$operators)[1]),
+               as.integer(dim(F$operators)[2]),
+               as.integer(lags),
+               as.integer(length(lags)),
+               as.numeric(F$freq),
+               as.integer(length(F$freq)),
+               PACKAGE = "freqdom")
+  A <- array(A, dim = dim=c(dim(F$operators)[1:2],length(lags)))
 
-  # TODO: this should be FFT
-  for (h in 1:H)
-    A[,,h] = inv.fourier.one(F,lags[h])
-
-  A2 <- .Call("fourier_inverse",
-              as.vector(F$operators),
-              as.integer(dim(F$operators)[1]),
-              as.integer(dim(F$operators)[2]),
-              as.integer(lags),
-              as.integer(H),
-              as.numeric(F$freq),
-              as.integer(length(F$freq)))
-  browser()
-  timedom(Re(A),lags)
+  timedom(A,lags)
 }

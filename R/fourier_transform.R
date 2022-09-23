@@ -42,7 +42,8 @@ fourier_transform = function(A,freq=pi*-100:100/100){
              as.numeric(thetas),
              as.integer(length(thetas)),
              as.integer(lags),
-             as.integer(H))
+             as.integer(H),
+             PACKAGE = "freqdom")
 
   S = array(
     s,
