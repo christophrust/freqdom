@@ -37,7 +37,7 @@ SEXP fourier_inverse(SEXP f, SEXP dim_f1, SEXP dim_f2,
     double accum = 0.0;
     for (int i = 0; i < res_array_len; i++){
         accum += fabs(cimag(tmp_cmplx_array[i]));
-        REAL(res)[i] = creal(tmp_cmplx_array[i]);
+        REAL(res)[i] = creal(tmp_cmplx_array[i])/(double) *INTEGER(n_freqs);
     }
 
     if (accum > 1e-9) {
