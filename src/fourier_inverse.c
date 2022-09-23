@@ -15,6 +15,9 @@ SEXP fourier_inverse(SEXP f, SEXP dim_f1, SEXP dim_f2,
     SEXP res = PROTECT(allocVector(REALSXP, res_array_len));
     double complex *tmp_cmplx_array;
     tmp_cmplx_array = (double complex *) Calloc(res_array_len, double complex);
+    for (int i = 0; i < res_array_len; i++) {
+        tmp_cmplx_array[i] = 0.0 + 0.0 * I;
+    }
 
 
     // temporary objects
