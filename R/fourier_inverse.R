@@ -45,7 +45,7 @@ fourier_inverse = function(F,lags=0){
                as.numeric(F$freq),
                as.integer(length(F$freq)),
                PACKAGE = "freqdom")
-  A <- array(A, dim = dim=c(dim(F$operators)[1:2],length(lags)))
+  A <- array(A, dim = c(dim(F$operators)[1:2], length(lags)))
 
   timedom(A,lags)
 }
