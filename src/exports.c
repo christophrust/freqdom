@@ -3,7 +3,7 @@
 
 static const R_CallMethodDef CallEntries[] = {
     {"fourier_transform", (DL_FUNC) &fourier_transform, 7},
-    {"fourier_inverse", (DL_FUNC) &fourier_transform, 7},
+    {"fourier_inverse", (DL_FUNC) &fourier_inverse, 7},
     {NULL, NULL, 0}
 };
 
