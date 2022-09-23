@@ -1,7 +1,4 @@
-#include <R.h>
-#include <Rinternals.h>
-#include <complex.h>
-
+#include "freqdom.h"
 
 /*
   Discrete fourier transform, moving heavy stuff of fourier.transform into C code
@@ -60,14 +57,3 @@ SEXP fourier_transform(SEXP z, SEXP dim_z1, SEXP dim_z2,
 }
 
 
-static const R_CallMethodDef CallEntries[] = {
-        {"fourier_transform", (DL_FUNC) &fourier_transform, 7},
-        {NULL, NULL, 0}
-};
-
-
-
-void R_init_freqdom(DllInfo *dll) {
-  R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
-  R_useDynamicSymbols(dll, FALSE);
-}

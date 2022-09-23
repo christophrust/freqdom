@@ -1,7 +1,4 @@
-#include <R.h>
-#include <Rinternals.h>
-#include <complex.h>
-
+#include "freqdom.h"
 
 
 
