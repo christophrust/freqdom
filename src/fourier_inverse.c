@@ -44,6 +44,8 @@ SEXP fourier_inverse(SEXP f, SEXP dim_f1, SEXP dim_f2,
         warning("The imaginary part of the coefficients was not zero, probably due to an assymmetric spectrum!");
     }
 
+    Free(tmp_cmplx_array);
+
     UNPROTECT(1);
     return res;
 }
